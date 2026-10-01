@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --color-paper: #faf9f6;
+  --color-ink: #242a27;
+  --color-muted: #626b64;
+  --color-line: #dcded6;
+  --color-accent: #245540;
+  --color-accent-hover: #173f2e;
+  --color-soft: #edf1e9;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-synthesis: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  button {
+    @apply min-h-11 cursor-pointer;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  input {
+    @apply min-w-0;
+  }
+
+  input[type="checkbox"] {
+    @apply size-4 shrink-0 accent-accent;
+  }
+
+  input[type="search"], input[type="date"] {
+    @apply min-h-11 w-full rounded-md border border-line bg-white px-3 py-2.5 text-base text-ink md:text-sm;
+  }
+
+  input::placeholder {
+    @apply text-muted opacity-100;
+  }
+
+  fieldset {
+    @apply min-w-0;
+  }
+
+  legend {
+    @apply mb-2 text-sm font-semibold;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .primary, .secondary {
+    @apply inline-flex items-center justify-center rounded-md border px-4 py-2.5 text-sm font-medium;
+  }
+
+  .primary {
+    @apply border-accent bg-accent text-white enabled:hover:border-accent-hover enabled:hover:bg-accent-hover;
+  }
+
+  .secondary {
+    @apply border-line bg-transparent text-accent enabled:hover:bg-soft;
+  }
+
+  .text-button {
+    @apply border-0 bg-transparent py-2 text-sm text-accent underline underline-offset-4 enabled:hover:text-accent-hover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
